@@ -8,7 +8,6 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
-var router = express.Router();
 
 // Setup server
 var app = express();
@@ -21,8 +20,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/client/public'));
 
 // Routing
-app.use('/', router);
-require('./server/routes')(router);
+require('./server/routes')(app);
 
 // Start server
 server.listen(app.get('port'), function () {
