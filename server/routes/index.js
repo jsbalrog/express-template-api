@@ -10,4 +10,10 @@ module.exports = function(app) {
   app.use('/api/things', require('../api/things'));
   app.use('/api/other-things', require('../api/other-things'));
 
+  // All other routes should redirect to the index.html
+  app.route('/*')
+    .get(function(req, res) {
+      console.log('here');
+      res.sendfile(app.get('appPath') + '/public/index.html');
+    });
 };

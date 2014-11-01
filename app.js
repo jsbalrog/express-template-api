@@ -16,6 +16,8 @@ var server = require('http').createServer(app);
 // Set port
 app.set('port', process.env.PORT || 3000);
 
+app.set('appPath', 'client');
+
 // Static directory
 app.use(express.static(__dirname + '/client/public'));
 
