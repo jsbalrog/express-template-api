@@ -4,6 +4,10 @@
 
 'use strict';
 
+var cookieParser = require('cookie-parser'),
+    session = require('express-session'),
+    bodyParser = require('body-parser');
+
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -17,6 +21,19 @@ var server = require('http').createServer(app);
 app.set('port', process.env.PORT || 3000);
 
 app.set('appPath', 'client');
+
+// To handle POST data
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Cookie parser for express sessions
+app.use(cookieParser());
+app.use(session({
+  secret: 'my secret',
+  saveUninitialized: true,
+  resave: true
+}));
+
 
 // Static directory
 app.use(express.static(__dirname + '/client/public'));
