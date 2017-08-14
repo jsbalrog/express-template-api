@@ -22,3 +22,12 @@ exports.index = function(req, res) {
     return res.json(200, things);
   });
 };
+
+// Get a single thing
+exports.show = function(req, res) {
+  Thing.findById(req.params.id, function(err, thing) {
+    if(err) { return handleError(res, err); }
+    if(!thing) { res.send(404); }
+    return res.json(thing);
+  });
+}
