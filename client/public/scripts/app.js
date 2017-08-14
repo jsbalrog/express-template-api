@@ -19,6 +19,10 @@ angular.module('myApp').config(function($stateProvider, $urlRouterProvider, $loc
   .state('home.paragraph', {
     url: '/paragraph',
     template: 'Here is a template'
+  })
+  .state('about', {
+    url: '/about',
+    templateUrl: 'partials/about.html',
   });
 });
 
