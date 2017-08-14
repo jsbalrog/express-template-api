@@ -10,7 +10,7 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./other-things.controller');
+var controller = require('./other-thing.controller');
 
 var router = express.Router();
 

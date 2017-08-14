@@ -9,7 +9,11 @@
 
 'use strict';
 
-// Get list of things
-exports.index = function(req, res) {
-  return res.json(200, { "thing1": "candy", "thing2": "hotdogs" });
-};
+var express = require('express');
+var controller = require('./thing.controller');
+
+var router = express.Router();
+
+router.get('/', controller.index);
+
+module.exports = router;

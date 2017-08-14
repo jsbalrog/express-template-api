@@ -9,11 +9,16 @@
 
 'use strict';
 
-var express = require('express');
-var controller = require('./things.controller');
+var Thing = require('./thing.model').Thing;
 
-var router = express.Router();
+function handleError(res, err) {
+  return res.send(500, err);
+}
 
-router.get('/', controller.index);
-
-module.exports = router;
+// Get list of things
+exports.index = function(req, res) {
+  Thing.find({}, function(err, things) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, things);
+  });
+};

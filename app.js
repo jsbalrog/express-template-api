@@ -6,7 +6,8 @@
 
 var cookieParser = require('cookie-parser'),
     session = require('express-session'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    Mongoose = require('mongoose');
 
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -43,6 +44,11 @@ require('./server/routes')(app);
 
 // Start server
 server.listen(app.get('port'), function () {
+  // Mongoose connection
+  Mongoose.connect('mongodb://localhost/express', {
+    useMongoClient: true,
+  });
+
   console.log('Express server listening on %d, in %s mode', app.get('port'), app.get('env'));
 });
 
