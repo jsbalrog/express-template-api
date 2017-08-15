@@ -57,7 +57,7 @@ exports.update = function(req, res) {
 
 // Delete an existing thing
 exports.destroy = function(req, res) {
-  Thing.findById(req, params.id, function(err, thing) {
+  Thing.findById(req.params.id, function(err, thing) {
     if(err) { return handleError(res, err); }
     if(!thing) { return res.send(404); }
     thing.remove(function(err) {
