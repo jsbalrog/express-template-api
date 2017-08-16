@@ -4,15 +4,15 @@
 
 'use strict';
 
-var cookieParser = require('cookie-parser'),
-    session = require('express-session'),
+var express = require('express'),
     bodyParser = require('body-parser'),
-    Mongoose = require('mongoose');
+    Mongoose = require('mongoose'),
+    morgan = require('morgan'),
+    jwt = require('jsonwebtoken'),
+    User = require('./server/api/user/user.model').User;
 
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
-var express = require('express');
 
 // Setup server
 var app = express();
@@ -23,18 +23,14 @@ app.set('port', process.env.PORT || 3000);
 
 app.set('appPath', 'client');
 
-// To handle POST data
+app.set('appSecret', 'fritzlives');
+
+// To be able to access POST data and/or URL parameters
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Cookie parser for express sessions
-app.use(cookieParser());
-app.use(session({
-  secret: 'my secret',
-  saveUninitialized: true,
-  resave: true
-}));
-
+// Use morgan to log requests to the console
+app.use(morgan('dev'));
 
 // Static directory
 app.use(express.static(__dirname + '/client/public'));
