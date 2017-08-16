@@ -8,7 +8,6 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     Mongoose = require('mongoose'),
     morgan = require('morgan'),
-    jwt = require('jsonwebtoken'),
     User = require('./server/api/user/user.model').User;
 
 // Set default node environment to development

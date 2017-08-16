@@ -10,6 +10,7 @@ module.exports = function(app) {
   app.use('/api/things', require('../api/thing'));
   app.use('/api/other-things', require('../api/other-thing'));
   app.use('/api/users', require('../api/user'));
+  app.use('/api/authenticate', require('../api/auth'));
 
   // All other routes should redirect to the index.html
   app.route('/*')
