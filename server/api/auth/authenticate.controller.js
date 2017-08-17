@@ -1,7 +1,8 @@
 'use strict';
 
 var User = require('../user/user.model').User,
-    jwt = require('jsonwebtoken');
+    jwt = require('jsonwebtoken'),
+    app = require('../../../app');
 
 // Create a new thing
 exports.authenticate = function(req, res) {
@@ -19,7 +20,7 @@ exports.authenticate = function(req, res) {
       } else {
         // If user is found and password is legit, create a token
         var token = jwt.sign(user, app.get('appSecret'), {
-          expiresInMinutes: 1440 // 24 hours
+          expiresIn: 1440 // 24 hours
         });
 
         // Return the info including the token as JSON

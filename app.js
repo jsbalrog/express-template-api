@@ -14,7 +14,7 @@ var express = require('express'),
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Setup server
-var app = express();
+var app = module.exports = express();
 var server = require('http').createServer(app);
 
 // Set port
@@ -46,6 +46,3 @@ server.listen(app.get('port'), function () {
 
   console.log('Express server listening on %d, in %s mode', app.get('port'), app.get('env'));
 });
-
-// Expose app
-exports = module.exports = app;
